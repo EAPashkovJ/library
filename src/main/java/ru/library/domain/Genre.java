@@ -16,5 +16,5 @@ public enum Genre {
     SCIENCE_FICTION,
     SHORT_STORIES,
     THRILLER,
-    WAR,
+    WAR
 }
