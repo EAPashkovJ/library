@@ -1,4 +1,4 @@
-package ru.library.domain;
+package ru.library.domain.enums;
 
 public enum Genre {
     ADVENTURE,

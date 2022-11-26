@@ -1,5 +1,8 @@
 package ru.library.domain;
 
+import ru.library.domain.enums.BookStatus;
+import ru.library.domain.enums.Genre;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

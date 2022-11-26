@@ -1,5 +1,7 @@
 package ru.library.domain;
 
+import ru.library.domain.enums.UserAccessType;
+
 import javax.persistence.*;
 
 @Entity
