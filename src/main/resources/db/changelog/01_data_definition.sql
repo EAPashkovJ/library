@@ -1,7 +1,3 @@
---liquibase formatted sql
---date 28.11.2022
---author aleksey knyazhev
-
 CREATE TABLE "users"(
                         "id" BIGINT NOT NULL,
                         "name" VARCHAR(255) NOT NULL,
@@ -71,14 +67,3 @@ ALTER TABLE
     "users" ADD CONSTRAINT "users_access_type_id_foreign" FOREIGN KEY("access_type_id") REFERENCES "access_type"("id");
 ALTER TABLE
     "books" ADD CONSTRAINT "books_author_id_foreign" FOREIGN KEY("author_id") REFERENCES "authors"("id");
-
-
-
-INSERT INTO access_type (id, access)
-VALUES ('1'::integer, 'admin'::character varying);
-
-INSERT INTO access_type (id, access)
-VALUES ('2'::integer, 'user'::character varying);
-
-INSERT INTO users (name, points, access_type_id, email, password, id)
-VALUES ('admin'::character varying, '0'::integer, '1'::integer, 'mail@me.com'::character varying, '0'::character varying, '1'::bigint);
