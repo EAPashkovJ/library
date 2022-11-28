@@ -12,10 +12,12 @@
         <maven.compiler.target>11</maven.compiler.target>
         <spring.version>5.3.20</spring.version>
         <spring.data.jpa.version>2.7.5</spring.data.jpa.version>
-        <hierante.version>5.6.12.Final</hierante.version>
+        <hibernate.version>5.6.12.Final</hibernate.version>
+        <spring.security>5.4.0</spring.security>       
         <liquibase.version>4.15.0</liquibase.version>
         <postgresql.version>42.2.5</postgresql.version>
         <snakeyaml.version>1.23</snakeyaml.version>
+
     </properties>
 
     <name>library Maven Webapp</name>
@@ -49,6 +51,30 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security}</version>
+        </dependency>
+
+
+
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
@@ -59,12 +85,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hierante.version}</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hierante.version}</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- liquibase -->
