@@ -11,7 +11,6 @@ ALTER TABLE
 CREATE TABLE "books"(
                         "id" BIGINT NOT NULL,
                         "title" VARCHAR(255) NOT NULL,
-                        /*"genre_id" VARCHAR(255) NOT NULL,*/
                         "genre_id" INTEGER NOT NULL,
                         "description" TEXT NOT NULL,
                         "author_id" BIGINT NOT NULL,
@@ -50,7 +49,6 @@ ALTER TABLE
 CREATE TABLE "library_trash_and_carry"(
                                           "id" BIGINT NOT NULL,
                                           "user_id" BIGINT NOT NULL,
-                                          "give_me_your_money" INTEGER NOT NULL,
                                           "date" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL
 );
 ALTER TABLE
