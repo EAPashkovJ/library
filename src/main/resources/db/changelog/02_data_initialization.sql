@@ -1,8 +1,8 @@
 INSERT INTO access_type (id, access)
-VALUES ('1'::integer, 'admin'::character varying);
+VALUES (1, 'admin');
 
 INSERT INTO access_type (id, access)
-VALUES ('2'::integer, 'user'::character varying);
+VALUES (2, 'user');
 
-INSERT INTO users (name, points, access_type_id, email, password, id)
-VALUES ('admin'::character varying, '0'::integer, '1'::integer, 'mail@me.com'::character varying, '0'::character varying, '1'::bigint);
+INSERT INTO users (id, name, points, access_type_id, email, password)
+VALUES (1, 'admin', 0, 1, 'mail@me.com', '0');
