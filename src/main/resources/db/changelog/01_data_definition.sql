@@ -49,6 +49,7 @@ ALTER TABLE
 CREATE TABLE "library_trash_and_carry"(
                                           "id" BIGINT NOT NULL,
                                           "user_id" BIGINT NOT NULL,
+                                          "give_me_your_money" INTEGER NOT NULL,
                                           "date" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL
 );
 ALTER TABLE
