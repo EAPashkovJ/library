@@ -22,6 +22,7 @@
         <postgresql.version>42.2.5</postgresql.version>
         <javax.servlet.api>4.0.1</javax.servlet.api>
         <jaxb.api.version>2.3.0</jaxb.api.version>
+        <projectlombok.version>1.18.24</projectlombok.version>
     </properties>
 
     <name>library Maven Webapp</name>
@@ -87,6 +88,12 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
             <version>${postgresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${projectlombok.version}</version>
         </dependency>
 
         <dependency>
