@@ -1,16 +1,22 @@
 package ru.library.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
+
+    @Column(name = "username")
+    private String username;
     private int points;
     @Enumerated
     @Column(name = "access_type_id",columnDefinition = "enum")
@@ -27,11 +33,11 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String username) {
+        this.username = username;
     }
 
     public int getPoints() {
