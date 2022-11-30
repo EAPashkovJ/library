@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.library.repository.UserRepository;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,13 +21,12 @@ import static ch.qos.logback.core.util.OptionHelper.isEmpty;
 public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtTokenUtil;
-    private final UserRepository userRepository;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-    public JWTFilter(JWTUtil jwtTokenUtil, UserRepository userRepository) {
+    public JWTFilter(JWTUtil jwtTokenUtil, UserDetailsServiceImpl userDetailsServiceImpl) {
         this.jwtTokenUtil = jwtTokenUtil;
-        this.userRepository = userRepository;
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
     }
-
 
 
     @Override
@@ -51,8 +49,10 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
         // Get user identity and set it on the spring security context
-        UserDetails userDetails = userRepository
-                .findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        //UserDetails userDetails = userRepository
+        //        .findByUsername(jwtTokenUtil.getUsernameFromToken(token));
+        UserDetails userDetails = userDetailsServiceImpl
+                .loadUserByUsername(jwtTokenUtil.getUsernameFromToken(token));
 
         UsernamePasswordAuthenticationToken
                 authentication = new UsernamePasswordAuthenticationToken(

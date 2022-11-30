@@ -3,13 +3,14 @@ package ru.library.service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import ru.library.domain.User;
 import ru.library.repository.UserRepository;
 
-public class UserService implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-    public UserService(UserRepository userRepository) {
+    public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -21,6 +22,6 @@ public class UserService implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException("User not found");
         }
-        return user;
+        return new UserDetailsImpl(user);
     }
 }

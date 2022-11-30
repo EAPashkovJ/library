@@ -20,7 +20,7 @@ public class RegistrationService {
     }
 
     public boolean addUser(User user) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
+        User userFromDb = userRepository.findByUsername(user.getName());
         if (userFromDb != null) {
             return false;
         }
