@@ -7,6 +7,8 @@ import ru.library.domain.User;
 import ru.library.domain.enums.UserAccessType;
 import ru.library.repository.UserRepository;
 
+import java.util.Collections;
+
 @Service
 public class RegistrationService {
     private final UserRepository userRepository;
@@ -23,6 +25,7 @@ public class RegistrationService {
             return false;
         }
         user.setUserAccessType(UserAccessType.USER);
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
