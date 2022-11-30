@@ -39,6 +39,7 @@ public class JWTUtil {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
+
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
@@ -74,4 +75,4 @@ public class JWTUtil {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 
     }
-    }
+}

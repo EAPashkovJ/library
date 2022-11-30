@@ -22,6 +22,7 @@
         <postgresql.version>42.2.5</postgresql.version>
         <javax.servlet.api>4.0.1</javax.servlet.api>
         <jaxb.api.version>2.3.0</jaxb.api.version>
+        <oauth2.version>2.7.6</oauth2.version>
     </properties>
 
     <name>library Maven Webapp</name>
@@ -57,6 +58,18 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!-- JWT -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+            <version>${oauth2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${oauth2.version}</version>
         </dependency>
 
         <dependency>
