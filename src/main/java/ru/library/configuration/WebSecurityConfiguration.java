@@ -27,7 +27,7 @@ public class WebSecurityConfiguration extends
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
+               .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
