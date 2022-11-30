@@ -1,12 +1,13 @@
 package ru.library.domain;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
