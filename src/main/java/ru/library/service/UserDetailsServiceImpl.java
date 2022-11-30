@@ -10,11 +10,11 @@ import ru.library.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+    UserRepository userRepository;
+
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

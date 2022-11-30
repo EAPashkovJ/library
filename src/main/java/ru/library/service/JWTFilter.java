@@ -1,6 +1,7 @@
 package ru.library.service;
 
 import org.springframework.http.HttpHeaders;
+//import ru.library.service.UserDetailsServiceImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,11 +22,11 @@ import static ch.qos.logback.core.util.OptionHelper.isEmpty;
 public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtTokenUtil;
-    private final UserDetailsServiceImpl userDetailsServiceImpl;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    public JWTFilter(JWTUtil jwtTokenUtil, UserDetailsServiceImpl userDetailsServiceImpl) {
+    public JWTFilter(JWTUtil jwtTokenUtil, UserDetailsServiceImpl userDetailsService) {
         this.jwtTokenUtil = jwtTokenUtil;
-        this.userDetailsServiceImpl = userDetailsServiceImpl;
+        this.userDetailsService = userDetailsService;
     }
 
 
@@ -51,7 +52,7 @@ public class JWTFilter extends OncePerRequestFilter {
         // Get user identity and set it on the spring security context
         //UserDetails userDetails = userRepository
         //        .findByUsername(jwtTokenUtil.getUsernameFromToken(token));
-        UserDetails userDetails = userDetailsServiceImpl
+        UserDetails userDetails = userDetailsService
                 .loadUserByUsername(jwtTokenUtil.getUsernameFromToken(token));
 
         UsernamePasswordAuthenticationToken
