@@ -23,6 +23,7 @@
         <javax.servlet.api>4.0.1</javax.servlet.api>
         <jaxb.api.version>2.3.0</jaxb.api.version>
         <oauth2.version>2.7.6</oauth2.version>
+        <projectlombok.version>1.18.24</projectlombok.version>
     </properties>
 
     <name>library Maven Webapp</name>
