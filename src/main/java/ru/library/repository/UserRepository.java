@@ -7,4 +7,6 @@ import ru.library.domain.User;
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
+    User findByUsername(String user);
+
 }

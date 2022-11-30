@@ -1,5 +1,12 @@
 package ru.library.domain.enums;
 
-public enum UserAccessType {
-    USER, ADMIN
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UserAccessType implements GrantedAuthority {
+    ADMIN, USER;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
