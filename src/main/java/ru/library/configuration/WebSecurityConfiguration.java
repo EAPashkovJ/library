@@ -22,9 +22,6 @@ public class WebSecurityConfiguration extends
     public final PasswordEncoder passwordEncoder;
 
 
-
-
-
     public WebSecurityConfiguration(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }

@@ -17,23 +17,25 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebMvc
 public class SpringConfig {
-    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Autowired
     public SpringConfig(UserDetailsService userDetailsService) {
     }
 
+    public SpringConfig(DataSource dataSource, PasswordEncoder passwordEncoder) {
+        this.dataSource = dataSource;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    private DataSource dataSource;
+    private PasswordEncoder passwordEncoder;
+
     @Bean
     public PasswordEncoder PasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-    @Autowired
-    private DataSource dataSource;
-    @Autowired
 
-    private  PasswordEncoder passwordEncoder;
 
-    @Autowired
 
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
