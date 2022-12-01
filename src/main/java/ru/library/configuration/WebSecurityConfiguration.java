@@ -45,14 +45,18 @@ public class WebSecurityConfiguration extends
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("login").permitAll()
+                .antMatchers("/").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .authorizeRequests()
-                .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-                .antMatchers("login").permitAll()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .rememberMe()
+                .and()
+                .logout()
+                .permitAll();
     }
 }
