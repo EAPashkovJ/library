@@ -1,6 +1,7 @@
 package ru.library.service;
 
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 @Component
 public class JWTUtil {
 
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+
 
     @Value("${jwt.secret}")
     private String secretKey;
@@ -57,7 +58,7 @@ public class JWTUtil {
     private String doGenerateToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                .setExpiration(new Date(Calendar.MINUTE))
                 .signWith(SignatureAlgorithm.HS512, secretKey).compact();
     }
 
