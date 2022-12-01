@@ -20,11 +20,11 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //return getAuthorities();
+        return getAuthorities();
         //Set<UserAccessType> userAccessType = new HashSet<>();
-        return user.getUserAccessType().stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
-                .collect(Collectors.toList());
+        //return user.getUserAccessType().stream()
+        //        .map(role -> new SimpleGrantedAuthority(role.name()))
+        //        .collect(Collectors.toList());
     }
 
     @Override
