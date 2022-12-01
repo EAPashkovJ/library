@@ -72,7 +72,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <version>${oauth2.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.auth0/auth0 -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>auth0</artifactId>
@@ -83,13 +82,12 @@
             <artifactId>java-jwt</artifactId>
             <version>3.18.3</version>
         </dependency>
-
-
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -97,7 +95,6 @@
             <version>${javax.servlet.api}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -108,7 +105,6 @@
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb.api.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
@@ -120,14 +116,11 @@
             <scope>runtime</scope>
             <version>${postgresql.version}</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${projectlombok.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
