@@ -14,8 +14,6 @@ import ru.library.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("ru.library")
-//public class SpringConfig extends WebSecurityConfigurerAdapter {
 public class SpringConfig {
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
@@ -28,10 +26,5 @@ public class SpringConfig {
     public PasswordEncoder PasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-
-    /*@Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServiceImpl);
-    }*/
 
 }
