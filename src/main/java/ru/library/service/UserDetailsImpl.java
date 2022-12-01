@@ -20,12 +20,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<UserAccessType> userAccessType = new HashSet<>();
-        userAccessType.add(user.getUserAccessType());
-        return userAccessType.stream()
+
+        return user.getUserAccessTypeSet().stream()
                 .map(role -> new SimpleGrantedAuthority(role.name()))
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public String getPassword() {

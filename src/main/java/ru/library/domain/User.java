@@ -6,6 +6,7 @@ import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +23,7 @@ public class User {
     @Column(name = "access_type_id",columnDefinition = "enum")
     private UserAccessType userAccessType;
     private String email;
-    private String password; // Не храним пароли в стринге. Будет переделано
+    private String password;
 
     public long getId() {
         return id;
@@ -48,8 +49,21 @@ public class User {
         this.points = points;
     }
 
+    @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "access"))
+    @Enumerated(EnumType.STRING)
+   private Set<UserAccessType> userAccessTypeSet;
+
+    public String getUsername() {
+        return username;
+    }
+
     public UserAccessType getUserAccessType() {
         return userAccessType;
+    }
+
+    public Set<UserAccessType> getUserAccessTypeSet() {
+        return userAccessTypeSet;
     }
 
     public void setUserAccessType(UserAccessType userAccessType) {
