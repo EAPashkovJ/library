@@ -20,23 +20,6 @@ public class WebSecurityConfiguration extends
         this.passwordEncoder = passwordEncoder;
     }
 
-    /*
-    Заглушка пока не настроена БД
-     */
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder)
-                .withUser("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN", "USER");
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -44,7 +27,7 @@ public class WebSecurityConfiguration extends
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
+               .antMatchers("/user/").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
