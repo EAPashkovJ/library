@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoleAccess {
 
     @GetMapping("/admin")
-    public String gerAccessAdmin(){
-        return "Hello admin!";
+    public HttpStatus gerAccessAdmin(){
+        return HttpStatus.OK;
     }
     @GetMapping("/user")
-    public String gerAccessUser(){
-        return "Hello user!";
+    public HttpStatus gerAccessUser(){
+         return HttpStatus.OK;
     }
 
 
