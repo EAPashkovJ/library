@@ -1,18 +1,19 @@
 package ru.library.domain;
 
+import org.springframework.stereotype.Component;
 import ru.library.domain.enums.BookStatus;
 import ru.library.domain.enums.Genre;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "books")
+@Component("ru/library/")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String tittle;
+    private String title;
     @Enumerated(EnumType.STRING)
     @Column(name = "genre_id", columnDefinition = "enum")
     private Genre genre;
@@ -23,23 +24,19 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
     @Column(name = "year")
-    private LocalDate date;
+    private String date;
     private int price;
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getTitle() {
+        return title;
     }
 
-    public String getTittle() {
-        return tittle;
-    }
-
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String tittle) {
+        this.title = tittle;
     }
 
     public Genre getGenre() {
@@ -74,11 +71,11 @@ public class Book {
         this.author = author;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
