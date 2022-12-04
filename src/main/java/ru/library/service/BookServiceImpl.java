@@ -25,6 +25,7 @@ public class BookServiceImpl implements BookService {
     }
 
     public Optional<Book> findById(long id) {
+        System.out.println(book.getBookStatus());
         return bookRepository.findById(id);
     }
 
@@ -46,8 +47,8 @@ public class BookServiceImpl implements BookService {
         book.setDescription(description);
         book.setDate(date);
         book.setGenre(genre);
-        book.setPrice(price);
         book.setBookStatus(BookStatus.AVAILABLE);
+        book.setPrice(price);
         log.info("Сохраняю книгу:" + " " + book.getTitle());
         bookRepository.save(book);
         return true;

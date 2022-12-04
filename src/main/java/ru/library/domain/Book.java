@@ -21,7 +21,7 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
-    @Transient
+    @Column(name = "status")
     private BookStatus bookStatus;
     private String description;
 
