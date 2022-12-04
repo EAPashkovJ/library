@@ -1,6 +1,7 @@
 package ru.library.service;
 
 import ru.library.domain.Book;
+import ru.library.domain.enums.BookStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,9 @@ public interface BookService {
                            String genre,
                            int price);
 
-    public void deleteBook(long id);
+    void deleteBook(long id);
+
+    boolean changeStatus(String title, BookStatus bookStatus);
 }
 
 
