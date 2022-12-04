@@ -42,11 +42,11 @@ public class UserController {
     @PostMapping("/save")
     public HttpStatus save (@RequestParam(value = "username") String username,
                             @RequestParam(value = "points") int points,
-                            @RequestParam(value = "useraccesstype") UserAccessType userAccessType,
+
                             @RequestParam(value = "email") String email,
                             @RequestParam(value = "password") String password) {
 
-        userServiceImpl.save(username, points,userAccessType, email,password);
+        userServiceImpl.save(username, points, email,password);
 
         /*User user = new User(2, "user", 5,UserAccessType.USER, "my@email", "1234");
         //user.setPoints(10);

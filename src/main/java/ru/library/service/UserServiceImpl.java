@@ -38,13 +38,13 @@ public class UserServiceImpl implements UserService {
 
     public void save (String username,
                       int points,
-                      UserAccessType userAccessType,
+
                       String email,
                       String password) {
 
         user.setName(username);
         user.setPoints(points);
-        //user.getUserAccessType(userAccessType);
+        user.setUserAccessType(UserAccessType.USER);
         user.setEmail(email);
         user.setPassword(password);
         userRepository.save(user);
