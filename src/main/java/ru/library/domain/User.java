@@ -50,8 +50,9 @@ public class User {
     }
 
     @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "access"))
+    @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
     @Enumerated(EnumType.STRING)
+    @Column(name = "access")
    private Set<UserAccessType> userAccessTypeSet;
 
     public String getUsername() {

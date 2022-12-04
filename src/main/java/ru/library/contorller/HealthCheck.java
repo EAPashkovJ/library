@@ -1,17 +1,19 @@
 package ru.library.contorller;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/test")
 public class HealthCheck {
 
-    @GetMapping("/healthcheck")
-    public String say() {
-        return "200 OK";
+
+    @GetMapping("/")
+    public HttpStatus say() {
+
+        return HttpStatus.OK;
     }
 
 }

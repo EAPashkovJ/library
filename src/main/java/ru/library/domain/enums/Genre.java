@@ -17,4 +17,6 @@ public enum Genre {
     SHORT_STORIES,
     THRILLER,
     WAR
+
+
 }

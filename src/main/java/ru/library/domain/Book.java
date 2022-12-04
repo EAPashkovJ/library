@@ -2,7 +2,6 @@ package ru.library.domain;
 
 import org.springframework.stereotype.Component;
 import ru.library.domain.enums.BookStatus;
-import ru.library.domain.enums.Genre;
 
 import javax.persistence.*;
 
@@ -10,19 +9,32 @@ import javax.persistence.*;
 @Table(name = "books")
 @Component("ru/library/")
 public class Book {
+
+    public Book() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "genre_id", columnDefinition = "enum")
-    private Genre genre;
+
+    @Column(name = "genre")
+    private String genre;
+
     @Transient
     private BookStatus bookStatus;
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
+
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Column(name = "year")
     private String date;
     private int price;
@@ -39,12 +51,14 @@ public class Book {
         this.title = tittle;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
+
+
     }
 
     public BookStatus getBookStatus() {
@@ -63,13 +77,6 @@ public class Book {
         this.description = description;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
 
     public String getDate() {
         return date;
