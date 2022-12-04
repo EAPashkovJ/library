@@ -36,8 +36,18 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserBasicInfoById(id);
     }
 
-    public void save (String username, int points, UserAccessType userAccessType, String email, String password) {
+    public void save (String username,
+                      int points,
+                      UserAccessType userAccessType,
+                      String email,
+                      String password) {
 
+        user.setName(username);
+        user.setPoints(points);
+        //user.getUserAccessType(userAccessType);
+        user.setEmail(email);
+        user.setPassword(password);
+        userRepository.save(user);
         /*User user1 = new User()
         userRepository.save(user);*/
 
