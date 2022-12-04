@@ -4,6 +4,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
+import ru.library.repository.UserRepository;
 
 import java.io.PrintStream;
 
@@ -20,5 +21,6 @@ public class Application {
 
         });
         app.run(args);
+
     }
     }
