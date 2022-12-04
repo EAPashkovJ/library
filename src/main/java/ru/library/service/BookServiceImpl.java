@@ -20,15 +20,18 @@ public class BookServiceImpl implements BookService {
         this.book = book;
     }
 
+    @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
+    @Override
     public Optional<Book> findById(long id) {
         System.out.println(book.getBookStatus());
         return bookRepository.findById(id);
     }
 
+    @Override
     public boolean addBook(
             String title,
             String description,
@@ -54,6 +57,7 @@ public class BookServiceImpl implements BookService {
         return true;
     }
 
+    @Override
     public void deleteBook(long id) {
         Optional<Book> bookFromDb = bookRepository.findById(id);
         if (bookFromDb.isPresent()) {
