@@ -1,0 +1,11 @@
+ALTER TABLE books DROP COLUMN "genre_id";
+
+ALTER TABLE books DROP COLUMN "author_id";
+
+ALTER TABLE books ADD COLUMN "genre" VARCHAR(255) NOT NULL;
+
+ALTER TABLE books ADD COLUMN "author" VARCHAR(255) NOT NULL;
+
+DROP TABLE authors;
+
+DROP TABLE genre;
