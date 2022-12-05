@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "books")
-@Component("ru/library/")
+@Component
 public class Book {
 
     public Book() {
