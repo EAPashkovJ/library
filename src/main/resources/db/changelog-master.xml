@@ -5,4 +5,5 @@
     <include file="changelog/01_data_definition.sql" relativeToChangelogFile="true" />
     <include file="changelog/02_data_initialization.sql" relativeToChangelogFile="true" />
     <include file="changelog/03_rename_and_delete.sql" relativeToChangelogFile="true" />
+    <include file="changelog/04_refactoring_tables_and_fields.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>
