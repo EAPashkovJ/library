@@ -64,7 +64,7 @@ public class User {
     }
 
 
-    @Column(name = "access")
+   
     @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
     @Enumerated(EnumType.STRING)
