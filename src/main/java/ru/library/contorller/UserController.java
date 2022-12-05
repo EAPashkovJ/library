@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
-    //public static User user;
 
     private final UserServiceImpl userServiceImpl;
 
@@ -25,9 +24,6 @@ public class UserController {
 
     @GetMapping("/show")
     public List<UserBasicInfoDTO> findAllUsers () {
-        /*List<User> users = userServiceImpl.findAll();
-        user = users.get(0);
-        System.out.println(user);*/
         List<UserBasicInfoDTO> userBasicInfoDTOS = userServiceImpl.findAllUserWithBasicInfo();
         return userBasicInfoDTOS;
     }
@@ -47,10 +43,6 @@ public class UserController {
                             @RequestParam(value = "password") String password) {
 
         userServiceImpl.save(username, points, email,password);
-
-        /*User user = new User(2, "user", 5,UserAccessType.USER, "my@email", "1234");
-        //user.setPoints(10);
-        userServiceImpl.save(user);*/
         return HttpStatus.OK;
     }
 
