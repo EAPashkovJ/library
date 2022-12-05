@@ -7,4 +7,7 @@ import ru.library.domain.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
+
+    Book findByTitle (String title);
 }
+

@@ -1,12 +1,15 @@
 package ru.library.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table(name = "usrs")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,9 +19,9 @@ public class User {
     @Column(name = "username")
     private String username;
     private int points;
-//    @Enumerated
-//    @Column(name = "access_type_id",columnDefinition = "enum")
-//    private UserAccessType userAccessType;
+    @Enumerated
+    @Column(name = "access_type_id",columnDefinition = "enum")
+    private UserAccessType userAccessType;
     private String email;
     private String password;
 
@@ -46,25 +49,25 @@ public class User {
         this.points = points;
     }
 
-    @Column(name = "access")
     @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
     @Enumerated(EnumType.STRING)
-    private Set<UserAccessType> userAccessType;
+    @Column(name = "access")
+   private Set<UserAccessType> userAccessTypeSet;
 
     public String getUsername() {
         return username;
     }
 
-    public Set<UserAccessType> getUserAccessType() {
+    public UserAccessType getUserAccessType() {
         return userAccessType;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Set<UserAccessType> getUserAccessTypeSet() {
+        return userAccessTypeSet;
     }
 
-    public void setUserAccessType(Set<UserAccessType> userAccessType) {
+    public void setUserAccessType(UserAccessType userAccessType) {
         this.userAccessType = userAccessType;
     }
 
