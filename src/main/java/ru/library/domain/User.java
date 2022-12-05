@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Component("ru/library/")
+@Component
 public class User {
 
     @Id
