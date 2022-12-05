@@ -2,6 +2,7 @@ package ru.library.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Component("ru/library/")
 public class User {
 
     @Id
@@ -25,13 +27,25 @@ public class User {
     private String email;
     private String password;
 
+    // Конструктор для теста функциональности запросов
+    public User(long id, String username, int points, UserAccessType userAccessType, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.points = points;
+        this.userAccessType = userAccessType;
+        this.email = email;
+        this.password = password;
+
+    }
+
+    public User() {
+    }
+
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
 
     public String getName() {
         return username;
@@ -49,6 +63,8 @@ public class User {
         this.points = points;
     }
 
+
+    @Column(name = "access")
     @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
     @Enumerated(EnumType.STRING)
