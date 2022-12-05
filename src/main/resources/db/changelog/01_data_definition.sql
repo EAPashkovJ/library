@@ -1,4 +1,4 @@
-CREATE TABLE "users"(
+CREATE TABLE usrs(
                         "id" BIGSERIAL NOT NULL,
                         "username" VARCHAR(255) NOT NULL,
                         "points" INTEGER NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE "users"(
                         "email" VARCHAR(255) NOT NULL,
                         "password" VARCHAR(255) NOT NULL);
 ALTER TABLE
-    "users" ADD PRIMARY KEY("id");
+    usrs ADD PRIMARY KEY("id");
 
 CREATE TABLE "books"(
                         "id" BIGSERIAL NOT NULL,
@@ -55,14 +55,14 @@ ALTER TABLE
     "library_trash_and_carry" ADD PRIMARY KEY("id");
 
 ALTER TABLE
-    "library_trash_and_carry" ADD CONSTRAINT "library_trash_and_carry_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("id");
+    "library_trash_and_carry" ADD CONSTRAINT "library_trash_and_carry_user_id_foreign" FOREIGN KEY("user_id") REFERENCES usrs("id");
 ALTER TABLE
     "books" ADD CONSTRAINT "books_genre_id_foreign" FOREIGN KEY("genre_id") REFERENCES "genre"("id");
 ALTER TABLE
-    "orders_history" ADD CONSTRAINT "orders_history_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("id");
+    "orders_history" ADD CONSTRAINT "orders_history_user_id_foreign" FOREIGN KEY("user_id") REFERENCES usrs("id");
 ALTER TABLE
     "orders_history" ADD CONSTRAINT "orders_history_book_id_foreign" FOREIGN KEY("book_id") REFERENCES "books"("id");
 ALTER TABLE
-    "users" ADD CONSTRAINT "users_access_type_id_foreign" FOREIGN KEY("access_type_id") REFERENCES "access_type"("id");
+    usrs ADD CONSTRAINT "users_access_type_id_foreign" FOREIGN KEY("access_type_id") REFERENCES "access_type"("id");
 ALTER TABLE
     "books" ADD CONSTRAINT "books_author_id_foreign" FOREIGN KEY("author_id") REFERENCES "authors"("id");
