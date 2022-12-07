@@ -1,5 +1,6 @@
 package ru.library.domain;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -9,8 +10,10 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
+@Data
 @Entity
-@Table(name = "users")
+//@Table(name = "users")
+@Table(name = "usrs")
 @Component
 public class User {
 

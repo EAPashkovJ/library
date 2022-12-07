@@ -7,12 +7,13 @@ import ru.library.domain.User;
 import ru.library.domain.dto.UserBasicInfoDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
-    User findByUsername(String user);
+    Optional<User> findByUsername(String user);
 
     @Query("SELECT new ru.library.domain.dto" +
             ".UserBasicInfoDTO(user .id, user.username, user .points, user .userAccessType, user .email) FROM User user")
