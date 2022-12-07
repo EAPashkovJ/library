@@ -1,14 +1,9 @@
 package ru.library;
 
-import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import ru.library.repository.UserRepository;
-
-import java.io.PrintStream;
 
 @EnableAutoConfiguration
 @ComponentScan
@@ -21,4 +16,4 @@ public class Application {
         app.run(args);
 
     }
-    }
+}
