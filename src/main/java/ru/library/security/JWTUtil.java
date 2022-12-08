@@ -17,15 +17,18 @@ public class JWTUtil {
     @Value("${jwt.secret}")
     private String secret;
 
+    @Value("${jwt.token-expiration-time}")
+    private Long tokenExpirationTime;
+
     public String generateToken(String username) {
-        //TODO Желательно вынести в properties
-        Date expirationDate = Date.from(ZonedDateTime.now().plusMinutes(100).toInstant());
+        Date expirationDate = Date.from(ZonedDateTime.now()
+                .plusMinutes(tokenExpirationTime).toInstant());
 
         return JWT.create()
                 .withSubject("User details")
                 .withClaim("username", username)
                 .withIssuedAt(new Date())
-                .withIssuer("grashchenko")
+                .withIssuer("pashkov")
                 .withExpiresAt(expirationDate)
                 .sign(Algorithm.HMAC256(secret));
     }
@@ -33,7 +36,7 @@ public class JWTUtil {
     public String validateTokenAndRetrieveClaim(String token) throws JWTVerificationException {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret))
                 .withSubject("User details")
-                .withIssuer("grashchenko")
+                .withIssuer("pashkov")
                 .build();
 
         DecodedJWT jwt = verifier.verify(token);
