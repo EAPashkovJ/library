@@ -6,7 +6,7 @@ public enum UserAccessType implements GrantedAuthority {
     ADMIN, USER;
 
     @Override
-    public String getAuthority() {
-        return name();
+    public String getAuthority()  {
+        return "ROLE_" + name();
     }
 }

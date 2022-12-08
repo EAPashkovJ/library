@@ -24,6 +24,7 @@
         <jaxb.api.version>2.3.0</jaxb.api.version>
         <oauth2.version>2.7.6</oauth2.version>
         <projectlombok.version>1.18.24</projectlombok.version>
+        <hibernate-validator.version>6.2.2.Final</hibernate-validator.version>
     </properties>
 
     <name>library Maven Webapp</name>
@@ -126,6 +127,24 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--    Validation-->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.0.0</version>
         </dependency>
 
     </dependencies>
