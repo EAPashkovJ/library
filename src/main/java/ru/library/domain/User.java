@@ -1,6 +1,8 @@
 package ru.library.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -12,11 +14,11 @@ import java.util.Set;
 
 @Data
 @Entity
-//@Table(name = "users")
 @Table(name = "usrs")
 @Component
-public class User {
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,30 +26,24 @@ public class User {
     @Column(name = "username")
     private String username;
     private int points;
-    @Enumerated
-    @Column(name = "access_type_id",columnDefinition = "enum")
-    private UserAccessType userAccessType;
+
+    @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "access")
+//@ManyToMany(fetch = FetchType.EAGER)
+//@JoinTable(name = "access_type",
+//        joinColumns = @JoinColumn(name = "id"),
+//        inverseJoinColumns = @JoinColumn(name = "id"))
+
+    private Set<UserAccessType> userAccessType;
+
     private String email;
     private String password;
-
-    // Конструктор для теста функциональности запросов
-    public User(long id, String username, int points, UserAccessType userAccessType, String email, String password) {
-        this.id = id;
-        this.username = username;
-        this.points = points;
-        this.userAccessType = userAccessType;
-        this.email = email;
-        this.password = password;
-
-    }
-
-    public User() {
-    }
 
     public long getId() {
         return id;
     }
-
 
 
     public String getName() {
@@ -66,28 +62,36 @@ public class User {
         this.points = points;
     }
 
-
-   
-    @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "access")
-   private Set<UserAccessType> userAccessTypeSet;
-
     public String getUsername() {
         return username;
     }
 
-    public UserAccessType getUserAccessType() {
+    public Set<UserAccessType> getUserAccessType() {
         return userAccessType;
     }
 
-    public Set<UserAccessType> getUserAccessTypeSet() {
-        return userAccessTypeSet;
+    public void setUserAccessType(Set<UserAccessType> userAccessType) {
+        this.userAccessType = userAccessType;
     }
 
-    public void setUserAccessType(UserAccessType userAccessType) {
-        this.userAccessType = userAccessType;
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 
     public String getEmail() {
@@ -96,6 +100,11 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getAuthorities();
     }
 
     public String getPassword() {

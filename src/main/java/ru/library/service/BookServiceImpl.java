@@ -73,8 +73,8 @@ public class BookServiceImpl implements BookService {
     public boolean changeStatus(String title, BookStatus bookStatus) {
         Book book = bookRepository.findByTitle(title);
         book.setBookStatus(bookStatus);
-        log.info("Статус книги " + title +  " был сменен на " +  bookStatus);
-        return false;
+        log.info("Статус книги " + title + " был сменен на " + bookStatus);
+        return true;
     }
 
 

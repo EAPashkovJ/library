@@ -8,16 +8,16 @@ import java.util.Optional;
 
 public interface BookService {
 
-  List<Book> findAll();
+    List<Book> findAll();
 
-  Optional<Book> findById(long id);
+    Optional<Book> findById(long id);
 
-  boolean addBook(String title,
-                           String description,
-                           String author,
-                           String date,
-                           String genre,
-                           int price);
+    boolean addBook(String title,
+                    String description,
+                    String author,
+                    String date,
+                    String genre,
+                    int price);
 
     void deleteBook(long id);
 
