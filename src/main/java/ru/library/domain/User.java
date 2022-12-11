@@ -3,10 +3,12 @@ package ru.library.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -18,6 +20,7 @@ import java.util.Set;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,18 +28,21 @@ public class User implements UserDetails {
 
     @Column(name = "username")
     private String username;
+
     private int points;
 
-    @ElementCollection(targetClass = UserAccessType.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "access")
-//@ManyToMany(fetch = FetchType.EAGER)
-//@JoinTable(name = "access_type",
-//        joinColumns = @JoinColumn(name = "id"),
-//        inverseJoinColumns = @JoinColumn(name = "id"))
-
-    private Set<UserAccessType> userAccessType;
+//
+//    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+//    @CollectionTable(name = "access_type_id", joinColumns = @JoinColumn(name = "id"))
+//    @Enumerated(EnumType.STRING)
+@Enumerated(EnumType.STRING)
+@CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"),
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "access_type"}, name = "uk_user_roles")})
+@Column(name = "access")
+@ElementCollection(fetch = FetchType.EAGER)
+@JoinColumn(name = "user_id")
+@OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Role> userAccessType;
 
     private String email;
     private String password;
@@ -66,11 +72,11 @@ public class User implements UserDetails {
         return username;
     }
 
-    public Set<UserAccessType> getUserAccessType() {
+    public Set<Role> getUserAccessType() {
         return userAccessType;
     }
 
-    public void setUserAccessType(Set<UserAccessType> userAccessType) {
+    public void setUserAccessType(Set<Role> userAccessType) {
         this.userAccessType = userAccessType;
     }
 
