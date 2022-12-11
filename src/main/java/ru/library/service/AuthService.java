@@ -16,7 +16,7 @@ import ru.library.repository.UserRepository;
 import ru.library.security.JWTUtil;
 import ru.library.security.UserDetailsImpl;
 
-import java.util.Set;
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -30,15 +30,7 @@ public class AuthService {
 
     public void register(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (("admin").equals(user.getName())) {
-            user.setUserAccessType(UserAccessType.ADMIN);
-        } else {
-            user.setUserAccessType(UserAccessType.USER);
-        }
-        /*Wallet wallet = new Wallet();
-        wallet.setBalance(0D);
-        walletRepository.save(wallet);
-        user.setWalletId(wallet.getId());*/
+        user.setUserAccessType(Collections.singleton(UserAccessType.USER));
         userRepository.save(user);
     }
 
@@ -47,7 +39,6 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(authBody.getName(), authBody.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-//        authenticationManager.authenticate(authInputToken);
         String token = jwtUtil.generateToken(userDetails.getUsername());
         return JwtResponse.builder()
                 .token(token)
