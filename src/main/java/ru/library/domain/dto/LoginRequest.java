@@ -15,6 +15,6 @@ public class LoginRequest {
     private String name;
 
     @NotBlank
-    @Size(min = 4, max = 128)
+    @Size(min = 1, max = 128)
     private String password;
 }

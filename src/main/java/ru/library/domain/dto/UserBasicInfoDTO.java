@@ -10,6 +10,8 @@ import lombok.Setter;
 import lombok.ToString;
 import ru.library.domain.enums.UserAccessType;
 
+import java.util.Set;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,9 +28,10 @@ public class UserBasicInfoDTO {
 
     private int points;
 
-    private UserAccessType userAccessType;
+    private Set<UserAccessType> userAccessType;
 
     @NotNull
     private String email;
+
 
 }
