@@ -1,5 +1,6 @@
 package ru.library.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.library.domain.User;
 import ru.library.domain.dto.UserBasicInfoDTO;
@@ -9,17 +10,18 @@ import ru.library.repository.UserRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final User user;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(User user, UserRepository userRepository) {
+    public UserServiceImpl(User user, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.user = user;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> findAll() {
@@ -37,23 +39,9 @@ public class UserServiceImpl implements UserService {
     public UserBasicInfoDTO findUserBasicInfoById(long id) {
         return userRepository.findUserBasicInfoById(id);
     }
-
-    public void save(String username,
-                     int points,
-
-                     String email,
-                     String password) {
-
-        user.setName(username);
-        user.setPoints(points);
+    public void register(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserAccessType(Collections.singleton(UserAccessType.USER));
-        user.setEmail(email);
-        user.setPassword(password);
         userRepository.save(user);
-
-
     }
-
-
-
 }

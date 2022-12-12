@@ -3,16 +3,13 @@ package ru.library.domain;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import ru.library.domain.enums.UserAccessType;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
-@Data
+
 @Entity
 @Table(name = "usrs")
 @Component
@@ -21,11 +18,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(name = "username")
     private String username;
     private int points;
-
 
     @CollectionTable(name = "access_type", joinColumns = @JoinColumn(name = "id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "access"}, name = "user_access")})
@@ -35,9 +30,11 @@ public class User {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @Enumerated(EnumType.STRING)
     private Set<UserAccessType> userAccessType;
-
     private String email;
     private String password;
+
+    public User() {
+    }
 
     public User(long id, String username, int points, String email, String password, Set<UserAccessType> userAccessType) {
         this.id = id;
@@ -48,13 +45,9 @@ public class User {
         this.userAccessType = userAccessType;
     }
 
-    public User() {
-    }
-
     public long getId() {
         return id;
     }
-
 
     public String getName() {
         return username;
@@ -99,6 +92,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 }

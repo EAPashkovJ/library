@@ -33,18 +33,4 @@ public class UserController {
 
     }
 
-    // Нужно в запросе как-то прописать пользователя для вставки в таблицу
-    @PostMapping("/save")
-    public HttpStatus save (@RequestParam(value = "username") String username,
-                            @RequestParam(value = "points") int points,
-
-                            @RequestParam(value = "email") String email,
-                            @RequestParam(value = "password") String password) {
-
-        userServiceImpl.save(username, points, email,password);
-        return HttpStatus.OK;
-    }
-
-
-
 }
