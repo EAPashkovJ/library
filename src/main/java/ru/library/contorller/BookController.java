@@ -3,6 +3,7 @@ package ru.library.contorller;
 
 import org.springframework.web.bind.annotation.*;
 import ru.library.domain.Book;
+import ru.library.domain.dto.TakeBookDTO;
 import ru.library.domain.enums.BookStatus;
 import ru.library.service.BookServiceImpl;
 
@@ -18,10 +19,14 @@ public class BookController {
         this.bookService = bookService;
     }
 
-
     @GetMapping("/show")
     public List<Book> showListOfBook() {
         return bookService.findAll();
+    }
+
+    @PostMapping("/take")
+    public Optional<Book> takeBookById(@PathVariable TakeBookDTO dto) {
+        return bookService.takeBookById(dto);
     }
 
     @GetMapping("{id}")

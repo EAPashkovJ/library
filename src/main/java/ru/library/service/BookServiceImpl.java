@@ -3,6 +3,7 @@ package ru.library.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.library.domain.Book;
+import ru.library.domain.dto.TakeBookDTO;
 import ru.library.domain.enums.BookStatus;
 import ru.library.repository.BookRepository;
 
@@ -75,6 +76,11 @@ public class BookServiceImpl implements BookService {
         book.setBookStatus(bookStatus);
         log.info("Статус книги " + title +  " был сменен на " +  bookStatus);
         return false;
+    }
+
+    @Override
+    public void takeBook(TakeBookDTO dto) {
+
     }
 
 

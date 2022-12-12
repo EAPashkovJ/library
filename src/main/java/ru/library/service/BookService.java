@@ -1,6 +1,7 @@
 package ru.library.service;
 
 import ru.library.domain.Book;
+import ru.library.domain.dto.TakeBookDTO;
 import ru.library.domain.enums.BookStatus;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public interface BookService {
     void deleteBook(long id);
 
     boolean changeStatus(String title, BookStatus bookStatus);
+
+    void takeBook(TakeBookDTO dto);
 }
 
 
