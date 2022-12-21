@@ -1,6 +1,7 @@
 package ru.library.contorller;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.library.domain.Book;
 import ru.library.domain.enums.BookStatus;
@@ -20,6 +21,7 @@ public class BookController {
 
 
     @GetMapping("/show")
+
     public List<Book> showListOfBook() {
         return bookService.findAll();
     }
@@ -30,6 +32,7 @@ public class BookController {
 
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add-book")
     public String addBook(@RequestParam(value = "title") String title,
                           @RequestParam(value = "description") String description,
